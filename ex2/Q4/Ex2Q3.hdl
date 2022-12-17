@@ -1,0 +1,19 @@
+/**
+ *  F(a,b,c) = out 
+ *  out = a if c = 0, otherwise, out = b if c = 1
+ */
+
+CHIP Ex2Q3 {
+    IN a,b,c;
+    OUT out;
+
+    PARTS:
+    // Put your code here:
+	Not(in=c,out=notC);
+	And(a=a,b=notC,out=aAndNotC);
+	And(a=c,b=b,out=cAndB);
+	Not(in=cAndB,out=notCAndB);
+	Not(in=aAndNotC,out=notAAndNotC);
+	And(a=notCAndB,b=notAAndNotC,out=notCAndBAndNotAAndNotC);
+	Not(in=notCAndBAndNotAAndNotC,out=out);
+}

@@ -1,0 +1,19 @@
+/**
+ *  F(A,B,C,D) = SOP(0,1,3,4,8,9,15)
+ */
+
+CHIP Ex2Q5A {
+    IN a,b,c,d;
+    OUT out;
+
+    PARTS:
+    // Put your implementation here using DEC3x8
+    // and minimal logic
+	DEC3x8(in[0]=d,in[1]=c,in[2]=b,out[0]=is0,out[1]=is1,out[3]=is3,out[4]=is4,out[7]=is7);
+	Or4(a=is0,b=is1,c=is3,d=is4,out=r1);
+	Or3(a=is0,b=is1,c=is7,out=r2);
+	Not(in=a,out=notA);
+	And(a=notA,b=r1,out=r11);
+	And(a=a,b=r2,out=r22);
+	Or(a=r11,b=r22,out=out);
+}

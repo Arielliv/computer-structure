@@ -1,0 +1,39 @@
+/**
+ * A simple arithmetic chip that receives
+ *	1. A bit Cin 
+ *	2. Two 4 bit numbers A and  B which are represented in 2's complement. 
+ * 	3. Two control inputs S1,S0
+ *
+ * The chip produces a 5 bit output out according to the following truth table:
+ * 	S1	S0	Cin	out
+ * 	0	0	0	A+B
+ * 	0	0	1	A+B+1
+ * 	0	1	0	A+B' 
+ * 	0	1	1	A+B'+1
+ * 	1	0	0	A
+ * 	1	0	1	A+1
+ * 	1	1	0	A-1
+ * 	1	1	1	A (similar to 3 lines above)
+ */
+
+CHIP Ex2Q7 {
+    IN 	cin, A[4], B[4], S[2];
+    OUT out[5];
+
+    PARTS:
+    
+	AdderSubstructor(a=A,b=B,ctl=false,s=aPlusB,overflow=overflow0);
+	AdderSubstructor(a=aPlusB,b[0]=false, b[1]=false,b[2]=false,b[3]=cin ,ctl=false,s=aPlusBPlusC,overflow=overflow1);
+	
+	Not4(in=B,out=NotB);
+	AdderSubstructor(a=A,b=NotB,ctl=false,s=aPlusNotB,overflow=overflow2);
+	AdderSubstructor(a=NotB,b[0]=false, b[1]=false,b[2]=false,b[3]=cin ,ctl=false,s=aPlusNotBPlusc,overflow=overflow3);
+	
+	AdderSubstructor(a=A,b[0]=false, b[1]=false,b[2]=false,b[3]=cin ,ctl=false,s=aPlusC,overflow=overflow45);
+	
+	AdderSubstructor(a=A,b[0]=false, b[1]=false,b[2]=false,b[3]=true ,ctl=true,s=aMinus1,overflow=overflow);
+	Mux2Way4(a=aPlusC, b=aMinus1,sel=cin, out=r);
+	
+	Mux4Way4(a=aPlusNotBPlusc,b=aPlusNotBPlusc,c=aPlusC,d=r,sel=S,out=out);
+	
+}

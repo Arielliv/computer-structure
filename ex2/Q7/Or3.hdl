@@ -1,0 +1,13 @@
+/**
+ * 3-bit bitwise Or gate
+ */
+
+CHIP Or3 {
+
+    IN  a, b, c;
+    OUT out;
+
+    PARTS:
+	Or(a=a,b=b,out=r1);
+	Or(a=r1,b=c,out=out);
+}

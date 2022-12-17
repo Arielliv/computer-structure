@@ -1,0 +1,22 @@
+/**
+ *	out[k] = 1 if k=(in) and out[k] = 0 for k<>(in)
+ */
+
+CHIP DEC3x8 {
+    IN 	in[3]; 
+    OUT out[8];
+
+    PARTS:
+    Not(in=in[0], out=in0Not);
+    Not(in=in[1], out=in1Not);
+    Not(in=in[2], out=in2Not);
+
+    And3(a=in0Not, b=in1Not,c=in2Not,out=out[0]);
+    And3(a=in[0], b=in1Not,c=in2Not,out=out[1]);
+    And3(a=in0Not, b=in[1],c=in2Not,out=out[2]);
+    And3(a=in[0], b=in[1],c=in2Not,out=out[3]);
+    And3(a=in0Not, b=in1Not,c=in[2],out=out[4]);
+    And3(a=in[0], b=in1Not,c=in[2],out=out[5]);
+    And3(a=in0Not, b=in[1],c=in[2],out=out[6]);
+    And3(a=in[0], b=in[1],c=in[2],out=out[7]);
+}

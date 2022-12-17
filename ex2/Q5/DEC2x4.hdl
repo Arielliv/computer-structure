@@ -1,0 +1,18 @@
+/**
+ *  out[k] = 1 if k=in and out[k] = 0 for k<>in
+ */
+
+CHIP DEC2x4 {
+    IN 	in[2]; 
+    OUT out[4];
+
+    PARTS:
+    // Put your implementation here
+	Not(in=in[0],out=NotIn0);
+	Not(in=in[1],out=NotIn1);
+	
+	And(a=NotIn0,b=NotIn1,out=out[0]);
+	And(a=in[0],b=NotIn1,out=out[1]);
+	And(a=NotIn0,b=in[1],out=out[2]);
+	And(a=in[0],b=in[1],out=out[3]);
+}

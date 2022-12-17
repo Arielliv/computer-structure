@@ -1,0 +1,33 @@
+/**
+ *  F(A,B,C,D) = SOP(0,1,3,4,8,9,15)
+ */
+
+CHIP Ex2Q5B {
+    IN a,b,c,d;
+    OUT out;
+
+    PARTS:
+    DEC2x4(in[0]=d,in[1]=c,out[0]=dec0,out[1]=dec1,out[2]=dec2,out[3]=dec3);
+	
+	Not(in=a,out=notA);
+	Not(in=b,out=notB);
+	Not(in=c,out=notC);
+	Not(in=d,out=notD);
+	
+	And(a=notA,b=notB,out=notAAndNotB);
+	Or3(a=dec3,b=dec1,c=dec0,out=rr);
+	And(a=notAAndNotB,b=rr,out=r1);
+	
+	And(a=notA,b=b,out=r2);
+	And(a=r2,b=dec0,out=r3);
+	
+	And(a=a,b=notB,out=r4);
+	Or(a=dec0,b=dec1,out=r5);
+	And(a=r4,b=r5,out=r6);
+	
+	And(a=a,b=b,out=r7);
+	And(a=r7,b=dec3,out=r8);
+	
+	Or4(a=r1,b=r3, c=r6,d=r8,out=out);
+	
+}

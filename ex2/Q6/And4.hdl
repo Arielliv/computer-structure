@@ -1,0 +1,14 @@
+/**
+ * 4-bit bitwise And gate
+ */
+
+CHIP And4 {
+
+    IN  a, b, c, d;
+    OUT out;
+
+    PARTS:
+	And(a=a,b=b,out=r1);
+	And(a=r1,b=c,out=r2);
+	And(a=r2, b=d, out=out);
+}

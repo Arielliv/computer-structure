@@ -1,0 +1,28 @@
+/** 
+ * 8 way Multiplexor. 
+ * out = in[0] if sel == 000
+ *       in[1] if sel == 001
+ *       in[2] if sel == 010
+ *       in[3] if sel == 011
+ *       in[4] if sel == 100
+ *       in[5] if sel == 101
+ *       in[6] if sel == 110
+ *       in[7] if sel == 111
+ */
+
+CHIP Mux8Way {
+    IN  in[8], sel[3];
+    OUT out;
+
+    PARTS:
+    DEC3x8(in=sel,out[0]=dec0,out[1]=dec1,out[2]=dec2,out[3]=dec3,out[4]=dec4,out[5]=dec5,out[6]=dec6,out[7]=dec7);
+	And(a=in[0],b=dec0,out=out0);
+	And(a=in[1],b=dec1,out=out1);
+	And(a=in[2],b=dec2,out=out2);
+	And(a=in[3],b=dec3,out=out3);
+	And(a=in[4],b=dec4,out=out4);
+	And(a=in[5],b=dec5,out=out5);
+	And(a=in[6],b=dec6,out=out6);
+	And(a=in[7],b=dec7,out=out7);
+	Or8Way(in[0]=out0,in[1]=out1,in[2]=out2,in[3]=out3,in[4]=out4,in[5]=out5,in[6]=out6,in[7]=out7,out=out);
+}

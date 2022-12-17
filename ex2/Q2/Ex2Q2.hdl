@@ -1,0 +1,22 @@
+/**
+ *  F(X3,X2,X1,X0) = out
+ *  out = 1 if the binary number X3X2X1X0 is primary
+ */
+
+CHIP Ex2Q2 {
+    IN x[4];
+    OUT out;
+
+    PARTS:
+    And(a=x[0],b=x[2],out=x0Andx2);
+	And(a=x[1],b=x[3],out=x1Andx3);
+	Not(in=x1Andx3,out=Notx1Andx3);
+	And(a=x0Andx2,b=Notx1Andx3,out=leftSide);
+	Not(in=x[2],out=Notx2);
+	And(a=x[1],b=Notx2,out=x1AndNotx2);
+	Not(in=x[0],out=Notx0);
+	And(a=x[3],b=Notx0,out=x3AndNotx0);
+	Not(in=x3AndNotx0,out=Notx3AndNotx0);
+	And(a=x1AndNotx2,b=Notx3AndNotx0,out=rightSide);
+	Or(a=leftSide,b=rightSide,out=out);
+}

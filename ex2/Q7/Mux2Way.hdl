@@ -1,0 +1,14 @@
+/** 
+ * Mux 2x1
+ */
+
+CHIP Mux2Way {
+    IN in[2], sel;
+    OUT out;
+
+    PARTS:
+    Not(in=sel,out=notSel);
+	And(a=notSel,b=in[0],out=r1);
+	And(a=sel,b=in[1],out=r2);
+	Or(a=r1,b=r2,out=out);
+}

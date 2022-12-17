@@ -1,0 +1,18 @@
+/**
+ *  F(X3,X2,X1,X0,S1,S0) = out 
+ *  out = X0 if S1S0 = 00
+ *  out = X1 if S1S0 = 01
+ *  out = X2 if S1S0 = 10
+ *  out = X3 if S1S0 = 11
+ */
+
+CHIP Ex2Q4 {
+    IN x[4],s[2];
+    OUT out;
+
+    PARTS:
+    // Put your code here:
+	Ex2Q3(a=x[0],b=x[1],c=s[0],out=muxOne);
+	Ex2Q3(a=x[2],b=x[3],c=s[0],out=muxTwo);
+	Ex2Q3(a=muxOne,b=muxTwo,c=s[1],out=out);
+}

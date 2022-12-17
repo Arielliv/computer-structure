@@ -1,0 +1,15 @@
+CHIP AdderSubstructor {
+    IN a[4], b[4], ctl;
+    OUT s[4], overflow;
+
+    PARTS:
+    Xor(a=b[0], b=ctl, out=inB0);
+	FullAdder(a=inB0,b=a[0],c=ctl, sum=s[0], carry=c1);
+	Xor(a=b[1], b=ctl, out=inB1);
+	FullAdder(a=inB1,b=a[1],c=c1, sum=s[1], carry=c2);
+	Xor(a=b[2], b=ctl, out=inB2);
+	FullAdder(a=inB2,b=a[2],c=c2, sum=s[2], carry=c3);
+	Xor(a=b[3], b=ctl, out=inB3);
+	FullAdder(a=inB3,b=a[3],c=c3, sum=s[3], carry=c4);
+	Xor(a=c4,b=c3, out=overflow);
+}

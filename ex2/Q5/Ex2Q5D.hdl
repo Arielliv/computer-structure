@@ -1,0 +1,21 @@
+/**
+ *  F(A,B,C,D) = SOP(0,1,3,4,8,9,15)
+ */
+
+CHIP Ex2Q5D {
+    IN a,b,c,d;
+    OUT out;
+
+    PARTS:
+	Not(in=a,out=notA);
+	Not(in=b,out=notB);
+	And(a=notA,b=notB,out=notAAndNotB);
+	Xor(a=a,b=b,out=AXorB);
+	Not(in=AXorB,out=NotAXorB);
+	And(a=a,b=b,out=AAndB);	
+	Or(a=AXorB,b=notAAndNotB,out=r0);
+	And(a=a,b=notB,out=r1);
+	Or(a=r1,b=notAAndNotB,out=r3);
+	
+    Mux4Way(in[0]=r0,in[1]=r3,in[2]=false,in[3]=NotAXorB,sel[0]=d,sel[1]=c,out=out);
+}

@@ -1,0 +1,14 @@
+/**
+ * 4-bit bitwise Or gate
+ */
+
+CHIP Or4 {
+
+    IN  a, b, c, d;
+    OUT out;
+
+    PARTS:
+	Or(a=a,b=b,out=r1);
+	Or(a=r1,b=c,out=r2);
+	Or(a=r2,b=d,out=out);
+}
