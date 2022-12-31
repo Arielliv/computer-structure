@@ -1,0 +1,14 @@
+/**
+ *  A FSM with input x and output z which outputs 1 in case one of the two following 
+ *  series is encountered: 1100 or 0101. The FSM will output 0 otherwise. Overlapping is 
+ *  permitted – the input 1100101 will result in the output 0001001. 
+ *  Use D-FF units and minimal logic.
+ */
+
+CHIP Ex3Q5 {
+    IN  x;
+    OUT z;
+
+    PARTS:
+    // Put your implementation here 
+}

@@ -1,0 +1,15 @@
+/**
+ *  A Moore FSM with two inputs x_t y_t and one output z where x_t y_t 
+ *  represent the letters A, B, C, D as follows:  A=00, B=01, C=10, D=11. 
+ *  The output z=1 if and only if the last two letters are consecutive in alphabetic 
+ *  order: AB, BC, CD.
+ *  Use SR-FF units and minimal logic.
+ */
+
+CHIP Ex3Q6 {
+    IN  x,y;
+    OUT z;
+
+    PARTS:
+    // Put your implementation here 
+}

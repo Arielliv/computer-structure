@@ -1,0 +1,15 @@
+/**
+ *  A FSM (either Mealy or Moore) with two inputs x_t y_t and one output z. 
+ *  Each input represents a digit in a base-3 number as follows: x_t y_t=00 represents zero, 
+ *  x_t y_t=01 represents the digit 1, and x_t y_t=10 represents the digit 2. 
+ *  The FSM prints 1 iff the base-3 number x_1 y_1…x_t y_t is divided by 4 with remainder 3. 
+ *  Use JK-FF units and minimal logic.
+ */
+
+CHIP Ex3Q7 {
+    IN  x,y;
+    OUT z;
+
+    PARTS:
+    // Put your implementation here 
+}

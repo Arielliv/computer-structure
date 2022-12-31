@@ -1,0 +1,11 @@
+/**
+ *  SR-FF in which the race condition is solved by setting Q(t+1) = 0 when S=R=1 
+ */
+
+CHIP Ex3Q1 {
+    IN  S,R;
+    OUT out;
+
+    PARTS:
+    // Put your implementation here 
+}

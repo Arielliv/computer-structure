@@ -1,0 +1,11 @@
+/**
+ *  A JK-FF using a DFF and minimal logic
+ */
+
+CHIP Ex3Q2 {
+    IN  J, K;
+    OUT out;
+
+    PARTS:
+    // Put your implementation here 
+}
