@@ -1,0 +1,16 @@
+/**
+ *  A JK-FF using a DFF and minimal logic
+ */
+
+CHIP JKFF {
+    IN  J, K;
+    OUT out;
+
+    PARTS:
+    Not(in=K,out=notK);
+	And(a=notQ,b=J,out=part1);
+	And(a=notK,b=Q,out=part2);
+	Or(a=part1,b=part2,out=D);
+	DFF(in=D,out=Q,out=out);
+	Not(in=Q,out=notQ);
+}

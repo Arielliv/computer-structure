@@ -7,5 +7,8 @@ CHIP Ex3Q1 {
     OUT out;
 
     PARTS:
-    // Put your implementation here 
+    Not(in=R, out=notR);
+	Or(a=S, b=Q, out=sOrQ);
+	And(a=notR, b=sOrQ, out=D);
+	DFF(in=D, out=Q, out=out);
 }

@@ -11,5 +11,29 @@ CHIP Ex3Q7 {
     OUT z;
 
     PARTS:
-    // Put your implementation here 
+    // Put your implementation here
+    JKFF(J=y, K=y, out=Q0);
+	JKFF(J=J1, K=K1, out=Q1);
+	
+	
+	Not(in=Q0, out=NotQ0);
+	Not(in=Q1, out=NotQ1);
+	Not(in=x, out=NotX);
+	Not(in=y, out=NotY);
+
+    //J1
+    And3(a=Q0, b=NotX, c=NotY, out=J1Part1);
+    And3(a=NotQ1, b=NotQ0, c=x, out=J1Part2);
+    Or(a=J1Part1 ,b=J1Part2, out=J1);
+
+    //K1
+    And3(a=Q0, b=NotX, c=NotY, out=K1Part1);
+	And3(a=Q1, b=NotQ0, c=x, out=K1Part2);
+	Or(a=K1Part1, b=K1Part2, out=K1);
+	
+	//Z
+    And4(a=NotQ1, b=Q0, c=x, d=y, out=ZPart1);
+	And3(a=Q1, b=NotQ0, c=y, out=ZPart2);
+	And3(a=Q1, b=Q0, c=x, out=ZPart3);
+	Or3(a=ZPart1, b=ZPart2, c=ZPart3, out=z);
 }

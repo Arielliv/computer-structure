@@ -10,5 +10,35 @@ CHIP Ex3Q5 {
     OUT z;
 
     PARTS:
-    // Put your implementation here 
+    DFF(in=D0, out=Q0);
+	DFF(in=D1, out=Q1);
+	DFF(in=D2, out=Q2);
+
+	Not(in=x, out=notX);
+	Not(in=Q2, out=notQ2);
+	Not(in=Q1, out=notQ1);
+	Not(in=Q0, out=notQ0);
+	
+	//D2
+	And3(a=notQ2, b=notQ0, c=notX, out=D2Part1);
+	And3(a=notQ2, b=Q1, c=x, out=D2Part2);
+	And3(a=Q2, b=notQ1, c=x, out=D2Part3);
+	Or3(a=D2Part1, b=D2Part2, c=D2Part3, out=D2);
+	
+	//D1
+	And(a=Q2, b=x, out=D1Part1);
+	And3(a=Q2, b=notQ1, c=notQ0, out=D1Part2);
+	And3(a=notQ2, b=Q1, c=notQ0, out=D1Part3);
+	And3(a=notQ1, b=Q0, c=x, out=D1Part4);
+	Or4(a=D1Part1, b=D1Part2, c=D1Part2, d=D1Part4, out=D1);
+	
+	//D0
+	And3(a=notQ2, b=notQ1, c=notQ0, out=D0Part1);
+	Or(a=notX, b=D0Part1, out=D0);
+	
+	//Z
+	And3(a=Q2, b=Q1, c=notX, out=ZPart1);
+	And3(a=Q1, b=Q0, c=x, out=ZPart2);
+	Or(a=ZPart1, b=ZPart2, out=out, out=z);
+	
 }

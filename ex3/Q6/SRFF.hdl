@@ -1,0 +1,15 @@
+/**
+ *  A SR-FF using a DFF and minimal logic
+ */
+
+CHIP SRFF {
+    IN  S, R;
+    OUT out;
+
+    PARTS:
+	
+	Not(in=R, out=notR);
+	And(a=notR, b=Q, out=part1);
+	Or(a=S, b=part1, out=D);
+	DFF(in=D,out=Q,out=out);
+}

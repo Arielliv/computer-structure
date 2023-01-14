@@ -12,4 +12,83 @@ CHIP Ex3Q6 {
 
     PARTS:
     // Put your implementation here 
+	SRFF(S=S0, R=R0, out=Q0);
+	SRFF(S=S1, R=R1, out=Q1);
+	SRFF(S=S2, R=R2, out=Q2);
+	
+	Not(in=Q0, out=NotQ0);
+	Not(in=Q1, out=NotQ1);
+	Not(in=Q2, out=NotQ2);
+	Not(in=x, out=NotX);
+	Not(in=y, out=NotY);
+	
+	//S2
+	And4(a=NotQ1, b=NotQ0, c=NotX, d=y, out=S2Part1);
+	And3(a=Q1, b=Q0, c=y, out=S2Part2);
+	And3(a=Q1, b=Q0, c=x, out=S2Part3);
+	And3(a=NotQ1, b=x, c=NotY, out=S2Part4);
+	Or4(a=S2Part1, b=S2Part2, c=S2Part3, d=S2Part4, out=S2Part6);
+	And(a=NotQ2, b=S2Part6, out=S2Left);
+	
+	And4(a=Q2, b=Q0, c=x, d=NotY, out=S2Right);
+	
+	Or(a=S2Left, b=S2Right, out=S2);
+	
+	
+	//S1
+	And4(a=NotQ1, b=Q2, c=NotX, d=y, out=S1Part1);
+    And(a=x, b=NotY, out=S1Part2);
+	Or(a=S1Part1, b=S1Part2, out=S1Part3);
+	And(a=NotQ2, b=S1Part3, out=S1Left);
+	
+	And3(a=Q2, b=x, c=NotY, out=S1Right);
+	
+	Or(a=S1Left, b=S1Right, out=S1);
+	
+	//S0
+	And3(a=NotQ1, b=NotX, c=NotY, out=S0Part1);
+	And4(a=Q1, b=NotQ0, c=x, d=NotY, out=S0Part2);
+	Or(a=S0Part1, b=S0Part2, out=S0Part3);
+	And(a=NotQ2, b=S0Part3, out=S0Left);
+	
+	And3(a=NotQ0, b=NotX, c=NotY, out=S0Part4);
+	And3(a=NotQ1, b=NotQ0, c=NotY, out=S0Part5);
+	And4(a=Q1, b=NotQ0, c=x,d=y, out=S0Part6);
+	Or3(a=S0Part4, b=S0Part5, c=S0Part6, out=S0Part7);
+	And(a=Q2, b=S0Part7, out=S0Right);
+	
+	Or(a=S0Left, b=S0Right, out=S0);
+	
+	
+	//R2
+    And(a=NotX, b=NotY, out=R2Part1);
+    And3(a=NotQ1, b=x, c=y, out=R2Part2);
+    And3(a=NotQ1, b=NotQ0, c=x, out=R2Part3);
+	Or3(a=R2Part1, b=R2Part2, c=R2Part3, out=R2Part4);
+	And(a=Q2, b=R2Part4, out=R2);
+	
+	//R1
+	And(a=Q1, b=NotX, out=R1);
+	
+	//R0
+	And(a=NotX, b=y, out=R0Part1);
+	And(a=NotQ1, b=x, out=R0Part2);
+	And3(a=Q0, b=x, c=NotY, out=R0Part3);
+	Or3(a=R0Part1, b=R0Part2, c=R0Part3, out=R0Part4);
+	And(a=NotQ2, b=R0Part4, out=R0Left);
+	
+	And(a=Q0, b=y, out=R0Part5);
+	And(a=Q0, b=x, out=R0Part6);
+	Or(a=R0Part5, b=R0Part6, out=R0Right);
+	And(a=R0Left, b=R0Right, out=R0);
+	
+	//Z
+	And3(a=NotQ2, b=Q1, c=NotQ0, out=ZPart1);
+	And3(a=NotQ2, b=Q1, c=Q0, out=ZPart2);
+	And3(a=Q2, b=NotQ1, c=Q0, out=ZPart3);
+	Or3(a=ZPart1, b=ZPart2, c=ZPart3, out=z);
+	
+	
+	
+	
 }
